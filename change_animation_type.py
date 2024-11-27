@@ -28,13 +28,17 @@ class TestChangeAnimationType():
         self.driver.find_element(By.ID, "wp-submit").click()
         self.driver.implicitly_wait(10)
 
+        page_number=0
+
         for link_text in links:
             link_text = link_text.strip()
             
-            if link_text:
+            if link_text == "page":
+                page_number = page_number+1
+            else:
                 print(f"Processing link: {link_text}")
                 
-                self.driver.get("https://www.tomaszciecko.pl/wp-admin/edit.php?post_type=page&paged=4")
+                self.driver.get(f"https://www.tomaszciecko.pl/wp-admin/edit.php?post_type=page&paged={page_number}")
                 
                 try:
                     link_element = self.driver.find_element(By.LINK_TEXT, link_text)
