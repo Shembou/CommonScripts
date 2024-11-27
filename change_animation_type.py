@@ -46,7 +46,8 @@ class TestChangeAnimationType():
                     dropdown = self.driver.find_element(By.ID, "_post_loading_animation_type")
                     dropdown.find_element(By.XPATH, "//option[. = 'None']").click()
                 
-                    self.driver.find_element(By.ID, "publish").click()
+                    self.driver.find_element(By.ID, "publish").submit()
+                    self.driver.implicitly_wait(10)
 
                     print(f"Successfully processed: {link_text}")
                 except Exception as e:
